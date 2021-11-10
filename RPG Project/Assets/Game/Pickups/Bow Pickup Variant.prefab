@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 9d66f51748d3bb942940c2fd8187a211, type: 2}
   respawnTime: 3
+  healthToRestore: 0
 --- !u!1001 &1934165491717640748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,12 +136,20 @@ PrefabInstance:
       value: 0.5328997
       objectReference: {fileID: 0}
     - target: {fileID: 5795425378568373935, guid: 2cc7e0c2a82323a46aff667ea6998b53, type: 3}
+      propertyPath: m_Size.y
+      value: 0.18480548
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795425378568373935, guid: 2cc7e0c2a82323a46aff667ea6998b53, type: 3}
       propertyPath: m_Size.z
       value: 1.6712234
       objectReference: {fileID: 0}
     - target: {fileID: 5795425378568373935, guid: 2cc7e0c2a82323a46aff667ea6998b53, type: 3}
       propertyPath: m_Center.x
-      value: 0.22397332
+      value: 0.2239733
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795425378568373935, guid: 2cc7e0c2a82323a46aff667ea6998b53, type: 3}
+      propertyPath: m_Center.y
+      value: 0.019216027
       objectReference: {fileID: 0}
     - target: {fileID: 5795425378568373935, guid: 2cc7e0c2a82323a46aff667ea6998b53, type: 3}
       propertyPath: m_Center.z

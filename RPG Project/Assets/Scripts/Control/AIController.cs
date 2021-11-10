@@ -15,10 +15,12 @@ namespace RPG.Control
         // config params
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 4f;
+        [SerializeField] float aggroCooldown = 5f;
         [SerializeField] PatrolPath myPatrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDwellTime = 2f;
         [SerializeField, Range(0, 1)] float patrolSpeedFraction = .2f;
+        [SerializeField] float shoutDistance = 5f;
 
         // cached references
         Health player;
@@ -32,6 +34,7 @@ namespace RPG.Control
         float timeSinceLastSawPlayer = Mathf.Infinity;
         int currentWaypointIndex = 0;
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
+        float timeSinceAggravated = Mathf.Infinity;        
 
         void Awake()
         {
@@ -53,9 +56,13 @@ namespace RPG.Control
             if (player == null) return;
             if (myHealth.IsDead()) return;
 
-            if (isWithinChaseDistance() && myFighter.CanAttack(player))
+            if (IsWithinChaseRange())
             {
-                timeSinceLastSawPlayer = 0;
+                AggravateAndShout();
+            }
+
+            if (IsAggravated() && myFighter.CanAttack(player))
+            {                
                 AttackBehavior();
             }
             else if (timeSinceLastSawPlayer < suspicionTime)
@@ -68,22 +75,54 @@ namespace RPG.Control
             }
             UpdateTimers();
         }
+        
+        public void Aggravate()
+        {
+            timeSinceAggravated = 0;
+        }
+
+        // Called from a Unity Event on enemy prefab health script
+        public void AggravateAndShout()
+        {
+            Aggravate();
+            AggravateNearbyEnemies();
+        }
 
         Vector3 GetGuardPosition()
         {
             return transform.position;
         }
 
-        bool isWithinChaseDistance()
+        bool IsAggravated()
         {
             if (player == null) return false;
+
+            if (timeSinceAggravated < aggroCooldown) return true; 
+
+            return Vector3.Distance(this.transform.position, player.transform.position) <= chaseDistance;
+        }
+
+        bool IsWithinChaseRange()
+        {
             return Vector3.Distance(this.transform.position, player.transform.position) <= chaseDistance;
         }
 
         private void AttackBehavior()
         {
-            myFighter.Attack(player.GetComponent<CombatTarget>());
+            timeSinceLastSawPlayer = 0;
+            myFighter.Attack(player.GetComponent<CombatTarget>());            
         }
+
+        private void AggravateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+            foreach (RaycastHit hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController>();
+                if (ai == null) continue;
+                ai.Aggravate();
+            }
+        }  
 
         private void SuspicionBehavior()
         {
@@ -129,6 +168,7 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer += Time.deltaTime;
             timeSinceArrivedAtWaypoint += Time.deltaTime;
+            timeSinceAggravated += Time.deltaTime;
         }
 
         // called by Unity editor when the object is selected

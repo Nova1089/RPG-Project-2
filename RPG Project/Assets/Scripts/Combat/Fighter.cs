@@ -70,11 +70,9 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
 
             if (!CanAttack(target)) return;
-            if (currentWeaponConfig == null) return;
+            if (currentWeaponConfig == null) return;            
 
-            bool isInWeaponRange = Vector3.Distance(transform.position, target.transform.position) <= currentWeaponConfig.GetRange();
-
-            if (!isInWeaponRange)
+            if (!IsInWeaponRange(target.transform))
             {
                 myMover.MoveTo(target.transform.position, runSpeedWhileAttacking);
             }
@@ -83,6 +81,11 @@ namespace RPG.Combat
                 myMover.Cancel();
                 AttackBehavior();
             }            
+        }
+
+        bool IsInWeaponRange(Transform targetTransform)
+        {
+            return Vector3.Distance(transform.position, targetTransform.position) <= currentWeaponConfig.GetRange();
         }
 
         void AttackBehavior()
@@ -132,7 +135,10 @@ namespace RPG.Combat
 
         public bool CanAttack(Health target)
         {
-            return target != null && !target.IsDead();
+            if (target == null) return false;
+            if (target.IsDead()) return false;
+            if (!myMover.CanMoveTo(target.transform.position) && !IsInWeaponRange(target.transform)) return false;
+            return true;
         }
 
         public void Attack(CombatTarget combatTarget)

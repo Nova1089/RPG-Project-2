@@ -1,5 +1,6 @@
 using RPG.Attributes;
 using RPG.Control;
+using RPG.Movement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,9 +55,13 @@ namespace RPG.Combat
 
         public bool HandleRaycast(PlayerController callingController)
         {
+            Mover playerMover = callingController.GetComponent<Mover>();
+
+            if (!playerMover.CanMoveTo(transform.position)) return false;
+            
             if (Input.GetMouseButtonDown(0))
             {
-                Pickup(callingController.gameObject);
+                playerMover.StartMoveAction(transform.position, 1f);
             }
             return true;
         }
