@@ -29,14 +29,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scatterDistance: 1
-  dropLibrary:
-  - {fileID: 11400000, guid: c033d59ecca57bb47bcbfd5acdf13b0b, type: 2}
-  - {fileID: 11400000, guid: 132c426d64bb6c048a69b4aaaef96912, type: 2}
-  - {fileID: 11400000, guid: 9d66f51748d3bb942940c2fd8187a211, type: 2}
-  - {fileID: 11400000, guid: c9a5e598ff8597d45be9d453e69821d3, type: 2}
-  - {fileID: 11400000, guid: cf55e4c891308c247ae02a0ed4cf8002, type: 2}
-  - {fileID: 11400000, guid: 6d7a5ad2c45fff04386934e3b4bad40a, type: 2}
-  numberOfDrops: 4
+  dropLibrary: {fileID: 11400000, guid: 75a6c1708d01b504987dceb62effce36, type: 2}
 --- !u!1001 &8210736128031497752
 PrefabInstance:
   m_ObjectHideFlags: 0
