@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27aa693a3dc1c8f4499e2157915c3c91, type: 3}
   m_Name: Red Bow
   m_EditorClassIdentifier: 
+  itemID: 253cf341-eda5-4ab4-8189-5721a7784aa3
+  displayName: Red Bow
+  description: 
+  icon: {fileID: 21300000, guid: aa4b2d88fc840d646820e294830f6dde, type: 3}
+  pickup: {fileID: 2756811771901967565, guid: a21374b62bf502d43850154d175ae246, type: 3}
+  stackable: 0
+  allowedEquipLocation: 5
   weaponPrefab: {fileID: 7373755388326098509, guid: e13a633307131454caad1ed8b26f6f6c, type: 3}
   animatorOverride: {fileID: 22100000, guid: 8c2750b0a4a4b55478e50efe9fbcfad9, type: 2}
   damage: 5

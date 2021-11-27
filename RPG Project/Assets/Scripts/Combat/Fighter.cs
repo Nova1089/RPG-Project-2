@@ -8,6 +8,7 @@ using GameDevTV.Saving;
 using RPG.Attributes;
 using RPG.Stats;
 using GameDevTV.Utils;
+using GameDevTV.Inventories;
 
 namespace RPG.Combat
 {
@@ -28,6 +29,7 @@ namespace RPG.Combat
         WeaponConfig currentWeaponConfig;
         BaseStats baseStats;
         LazyValue<Weapon> currentWeapon;
+        Equipment equipment;
 
 
         // logic variables
@@ -41,6 +43,7 @@ namespace RPG.Combat
             baseStats = GetComponent<BaseStats>();
             currentWeaponConfig = defaultWeapon;
             currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+            equipment = GetComponent<Equipment>();
         }
 
         private Weapon SetupDefaultWeapon()
@@ -48,9 +51,33 @@ namespace RPG.Combat
             return AttachWeapon(defaultWeapon);            
         }
 
+        void OnEnable()
+        {
+            if (equipment)
+            {
+                equipment.equipmentUpdated += UpdateWeapon;
+            }
+        }
+
         void Start()
         {
             currentWeapon.ForceInit();                                 
+        }
+
+        private void UpdateWeapon()
+        {
+            EquipableItem item = equipment.GetItemInSlot(EquipLocation.Weapon);
+
+            if (item)
+            {
+                WeaponConfig weapon = (WeaponConfig)item;
+                EquipWeapon(weapon);
+            }
+            else
+            {
+                EquipWeapon(defaultWeapon);
+            }
+
         }
 
         public void EquipWeapon(WeaponConfig weapon)
