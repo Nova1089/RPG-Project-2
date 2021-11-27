@@ -21,6 +21,9 @@ namespace RPG.Control
         Mover myMover;
         Health myHealth;
 
+        // State
+        bool isDraggingUI = false;
+
         [System.Serializable] struct CursorMapping
         {
             public CursorType type;
@@ -50,15 +53,27 @@ namespace RPG.Control
 
         private bool InteractWithUI()
         {
+            if (Input.GetMouseButtonUp(0))
+            {
+                isDraggingUI = false;
+            }
+
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 SetCursor(CursorType.UI);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    isDraggingUI = true;
+                }
                 return true;
             }
-            else
+
+            if (isDraggingUI)
             {
-                return false;
+                return true;
             }
+
+            return false;
         }
 
         private bool InteractWithComponent()
