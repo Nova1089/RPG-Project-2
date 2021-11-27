@@ -354,7 +354,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60236244}
-  m_LocalRotation: {x: 0.13559096, y: -0.6418507, z: 0.11671299, w: 0.7456681}
+  m_LocalRotation: {x: 0.13559096, y: -0.64185065, z: 0.11671295, w: 0.7456682}
   m_LocalPosition: {x: 17.44, y: 1.44, z: -8.966}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -655,7 +655,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389773096}
-  m_LocalRotation: {x: 0.23215003, y: 0.16367349, z: -0.03966306, w: 0.9579897}
+  m_LocalRotation: {x: 0.23215003, y: 0.1636735, z: -0.039663065, w: 0.9579897}
   m_LocalPosition: {x: 6.24, y: 7.49, z: -3.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1256,6 +1256,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 16
+--- !u!114 &606733715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606733711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdf30ea659080e4fab5a77197bed0d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scatterDistance: 1
+  dropLibrary: []
+  numberOfDrops: 2
 --- !u!1 &645137077
 GameObject:
   m_ObjectHideFlags: 0
@@ -3399,7 +3414,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771576224}
-  m_LocalRotation: {x: 0.063649796, y: 0.9361792, z: -0.23503399, w: 0.25352767}
+  m_LocalRotation: {x: 0.06364979, y: 0.9361792, z: -0.23503399, w: 0.25352767}
   m_LocalPosition: {x: -7.09, y: 4.481554, z: 7.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5022,7 +5037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7589280004165685611, guid: a5fb032d3f1066243bbcb0f4ce6a141c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -570.75
+      value: -570.75006
       objectReference: {fileID: 0}
     - target: {fileID: 7589497708384536513, guid: a5fb032d3f1066243bbcb0f4ce6a141c, type: 3}
       propertyPath: m_AnchoredPosition.y
