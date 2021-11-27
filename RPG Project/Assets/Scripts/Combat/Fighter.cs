@@ -12,7 +12,7 @@ using GameDevTV.Inventories;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         // config params        
         [SerializeField] float attackCooldown = 1f;        
@@ -185,22 +185,6 @@ namespace RPG.Combat
         {
             myAnimator.ResetTrigger("attack");
             myAnimator.SetTrigger("stopAttacking");
-        }
-
-        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-            {
-                yield return currentWeaponConfig.GetDamage();
-            }
-        }
-
-        public IEnumerable<float> GetPercentageModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-            {
-                yield return currentWeaponConfig.GetPercentageBonus();
-            }
         }
 
         public object CaptureState()
